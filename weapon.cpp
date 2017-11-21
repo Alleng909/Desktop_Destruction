@@ -1,4 +1,5 @@
 #include "weapon.h"
+#include <iostream>
 
 //Returns name of weapon
 std::string Weapon::getName() const {
@@ -25,4 +26,8 @@ double Weapon::getAccuracy() const {
     return accuracy;
 }
 
+Weapon::~Weapon() {
+    std::cout << "DELETING " << name << " " << hitNumber << " " << range << " " << maxDamage
+         << " " << minDamage << " " << accuracy;
+}
 //NOTE TO SELF TO GET TEMPLATE FOR CHECKING RANGE?

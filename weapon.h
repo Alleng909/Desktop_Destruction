@@ -17,6 +17,7 @@ public:
     int getRange() const;
     int getDamage() const;
     double getAccuracy() const;
+    virtual ~Weapon();
     //Might want to implement ammo later
 
 private:

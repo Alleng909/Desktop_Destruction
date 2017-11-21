@@ -25,10 +25,18 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
         main.cpp \
-        mainwindow.cpp
+        mainwindow.cpp \
+    desktop_icon.cpp \
+    weapon.cpp \
+    gameloader.cpp \
+    gameboard.cpp
 
 HEADERS += \
-        mainwindow.h
+        mainwindow.h \
+    desktop_icon.h \
+    weapon.h \
+    gameloader.h \
+    gameboard.h
 
 FORMS += \
         mainwindow.ui

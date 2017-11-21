@@ -2,17 +2,19 @@
 #include <QApplication>
 #include "weapon.h";
 #include "desktop_icon.h";
+#include "gameboard.h"
+#include "gameloader.h"
+#include <iostream>
 
 int main(int argc, char *argv[]) //NOTE NEED TO EQUIP A NEW WEAPON TO EACH SHIP
 {
     srand(time(0));
-    Weapon* Trojan = new Weapon("Trojan", 2, 4, 10, 4, .9);
-    Desktop_Icon* Dumb = new Desktop_Icon("Dumb", 100, .1, 3, 1, 1);
-    Dumb->equip(Trojan);
-    std::cout << "Start" << (double)rand()/RAND_MAX << " " << (double)rand()/RAND_MAX << "\n";
-    Dumb->gotDamaged(Trojan);
-    Dumb->gotDamaged(Trojan);
-    std::cout << "TEST\n";
+    std::string f = "Load1.txt";
+    GameBoard* boardPointer = new GameBoard();
+    GameLoader loader(f, boardPointer);
+    std::cout << "Initializing load\n";
+    loader.load();
+    std::cout << "Terminating load\n";
     /*
     QApplication a(argc, argv);
     MainWindow w;
