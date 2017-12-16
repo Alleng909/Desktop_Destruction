@@ -2,6 +2,11 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QPushButton>
+#include <QLabel>
+#include <vector>
+#include "gameboard.h";
+
 
 namespace Ui {
 class MainWindow;
@@ -13,10 +18,15 @@ class MainWindow : public QMainWindow
 
 public:
     explicit MainWindow(QWidget *parent = 0);
+    //I have no clue what I'm doing, but trying to make a constructor where I can input a board.
+    MainWindow(GameBoard* b, QWidget *parent = 0): board(b){}
     ~MainWindow();
+private slots:
+    //void clear;
 
 private:
-    Ui::MainWindow *ui;
+    GameBoard* board;
+
 };
 
 #endif // MAINWINDOW_H
