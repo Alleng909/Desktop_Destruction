@@ -24,10 +24,10 @@ MainWindow::MainWindow(GameBoard* b, QWidget *parent) : board(b), QMainWindow(pa
 
         std::vector<Desktop_Icon*> icons = board->returnIcons();
         for(auto icon : icons) {
-           int index = board->getHeight()*icon->getX()+icon->getY();
+           size_t index = board->getHeight()*icon->getX()+icon->getY();
            std::string nam = icon->getName();
-           QString newNam = QString::fromStdString(nam);
-           buttons[index]->setText(newNam);
+           QString* newNam = new QString::fromStdString(nam);
+           //buttons[index]->setText(newNam);
            connect(buttons[index], SIGNAL(released()), this, SLOT(ship()));
         }
 
