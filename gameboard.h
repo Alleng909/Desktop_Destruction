@@ -15,9 +15,13 @@ public:
     void addWep(Weapon* w);
     void addIcon(Desktop_Icon* i);
     void equipAll();
+
+    std::vector<Desktop_Icon*> returnIcons();
+    size_t getWidth();
+    size_t getHeight();
 private:
-    int width;
-    int height;
+    size_t width;
+    size_t height;
     std::vector<Weapon*> weaponList;
     std::vector<Desktop_Icon*> iconList;
 };

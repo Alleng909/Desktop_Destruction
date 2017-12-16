@@ -15,12 +15,14 @@ int main(int argc, char *argv[]) //NOTE NEED TO EQUIP A NEW WEAPON TO EACH SHIP
     std::cout << "Initializing load\n";
     loader.load();
     std::cout << "Terminating load\n";
-    /*
+
     QApplication a(argc, argv);
-    MainWindow w;
+    MainWindow w(boardPointer);
+    w.showMaximized();
+    w.setFixedSize(600,500);
     w.show();
 
     return a.exec();
-    */
+
     return 0;
 }

@@ -18,8 +18,18 @@ void GameBoard::addIcon(Desktop_Icon* i) {
 
 void GameBoard::equipAll() {
     std::cout << "Equipping weapons";
-    for(int i = 0; i < weaponList.size(); i++)
+    for(size_t i = 0; i < weaponList.size(); i++)
         iconList[i]->equip(weaponList[i]);
+}
+
+std::vector<Desktop_Icon*> GameBoard::returnIcons() {
+    return iconList;
+}
+size_t GameBoard::getWidth() {
+    return width;
+}
+size_t GameBoard::getHeight() {
+    return height;
 }
 
 GameBoard::~GameBoard() {
