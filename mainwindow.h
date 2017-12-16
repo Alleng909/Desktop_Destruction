@@ -22,12 +22,14 @@ public:
     MainWindow(GameBoard* b, QWidget *parent = 0);
     ~MainWindow();
 private slots:
-    //void clear;
+    void blank();
+    void ship();
 
 private:
     GameBoard* board;
     std::vector<QPushButton*> buttons;
-    QPushButton* test;
+    QLabel information;
+    size_t lastClicked;
 
 };
 
