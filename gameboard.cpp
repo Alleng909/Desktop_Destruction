@@ -22,6 +22,16 @@ void GameBoard::equipAll() {
         iconList[i]->equip(weaponList[i]);
 }
 
+std::vector<Desktop_Icon*> GameBoard::returnIcons() {
+    return iconList;
+}
+size_t GameBoard::getWidth() {
+    return width;
+}
+size_t GameBoard::getHeight() {
+    return height;
+}
+
 GameBoard::~GameBoard() {
     for(auto weapon: weaponList) {
         delete weapon;

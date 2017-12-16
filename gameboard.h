@@ -16,7 +16,9 @@ public:
     void addIcon(Desktop_Icon* i);
     void equipAll();
 
-    void returnIcons const();
+    std::vector<Desktop_Icon*> returnIcons();
+    size_t getWidth();
+    size_t getHeight();
 private:
     size_t width;
     size_t height;
