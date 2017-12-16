@@ -24,3 +24,14 @@ bool Desktop_Icon::gotDamaged(Weapon* w) {
 void Desktop_Icon::equip(Weapon *w) {
     virus = w;
 }
+
+int Desktop_Icon::getX() const {
+    return xLoc;
+}
+int Desktop_Icon::getY() const {
+    return yLoc;
+}
+
+std::string Desktop_Icon::getName() const {
+    return name;
+}
