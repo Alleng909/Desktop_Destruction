@@ -29,7 +29,7 @@ private:
     GameBoard* board;
     std::vector<QPushButton*> buttons;
     QLabel information;
-    size_t lastClicked;
+    std::string lastClicked;
 
 };
 

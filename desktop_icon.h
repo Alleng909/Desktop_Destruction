@@ -15,6 +15,9 @@ public:
     bool gotDamaged(Weapon* w);
     void equip(Weapon* w);
     virtual ~Desktop_Icon() = default;
+    int getX() const;
+    int getY() const;
+    std::string getName() const;
 private:
     std::string name;
     int currentHealth;

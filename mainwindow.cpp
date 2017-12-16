@@ -8,7 +8,7 @@ int heightOffset = 10;
 int widthOffset = 10;
 
 
-MainWindow::MainWindow(GameBoard* b, QWidget *parent) : board(b), QMainWindow(parent), lastClicked(0)
+MainWindow::MainWindow(GameBoard* b, QWidget *parent) : board(b), QMainWindow(parent), lastClicked("Ocean")
 {
     try {
         QString qs("Ocean");
@@ -20,6 +20,15 @@ MainWindow::MainWindow(GameBoard* b, QWidget *parent) : board(b), QMainWindow(pa
                     widthOffset+widthButton*width),QSize(heightButton,widthButton)));
                 connect(buttons[index], SIGNAL(released()), this, SLOT(blank()));
             }
+        }
+
+        std::vector<Desktop_Icon*> icons = board->returnIcons();
+        for(auto icon : icons) {
+           int index = board->getHeight()*icon->getX()+icon->getY();
+           std::string nam = icon->getName();
+           QString newNam = QString::fromStdString(nam);
+           buttons[index]->setText(newNam);
+           connect(buttons[index], SIGNAL(released()), this, SLOT(ship()));
         }
 
     } catch(std::exception e) {
@@ -34,14 +43,19 @@ void MainWindow::blank() {
     QString imSpecial = clickedMe->text(); //Annoying bugger needs a special function to be converted.
     std::string noLongerSpecial = imSpecial.toStdString();
     //Sets label to ocean
-    //if(buttons[lastClicked])
-    buttons[lastClicked]->setText("Ocean");
-    connect(buttons[lastClicked], SIGNAL(released()), this, SLOT(ship()));
-    std::cout << noLongerSpecial;
+    if(noLongerSpecial == "Ocean") {
+        //Means Nothing
+    } else {
+        //Do a thing (still need to use LastClicked)
+    }
+    //buttons[lastClicked]->setText("Ocean");
+
+    //When ship moves, connections do too.
+    //connect(buttons[lastClicked], SIGNAL(released()), this, SLOT(ship()));
 }
 
 void MainWindow::ship() {
-   buttons[lastClicked]->setText("SHIP");
+   //buttons[lastClicked]->setText("SHIP");
 }
 
 MainWindow::~MainWindow()
