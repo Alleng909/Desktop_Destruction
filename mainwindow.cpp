@@ -2,8 +2,8 @@
 #include "ui_mainwindow.h"
 #include <iostream>
 
-int heightButton = 40;
-int widthButton = 40;
+int heightButton = 60;
+int widthButton = 60;
 int heightOffset = 10;
 int widthOffset = 10;
 
@@ -24,10 +24,10 @@ MainWindow::MainWindow(GameBoard* b, QWidget *parent) : board(b), QMainWindow(pa
 
         std::vector<Desktop_Icon*> icons = board->returnIcons();
         for(auto icon : icons) {
-           size_t index = board->getHeight()*icon->getX()+icon->getY();
+           int index = board->getHeight()*icon->getX()+icon->getY();
            std::string nam = icon->getName();
-           QString* newNam = new QString::fromStdString(nam);
-           //buttons[index]->setText(newNam);
+           QString newNam = QString::fromStdString(nam);
+           buttons[index]->setText(newNam);
            connect(buttons[index], SIGNAL(released()), this, SLOT(ship()));
         }
 
