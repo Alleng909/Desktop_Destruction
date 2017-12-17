@@ -5,6 +5,8 @@
 #include <QPushButton>
 #include <QLabel>
 #include <vector>
+#include <string>
+#include "desktop_icon.h";
 #include "gameboard.h";
 
 
@@ -30,7 +32,9 @@ private:
     std::vector<QPushButton*> buttons;
     QLabel information;
     std::string lastClicked;
+    std::vector<Desktop_Icon*> icons;
 
+    Desktop_Icon* findIcon(std::string);
 };
 
 #endif // MAINWINDOW_H

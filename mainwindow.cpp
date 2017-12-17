@@ -2,8 +2,8 @@
 #include "ui_mainwindow.h"
 #include <iostream>
 
-int heightButton = 40;
-int widthButton = 40;
+int heightButton = 60;
+int widthButton = 60;
 int heightOffset = 10;
 int widthOffset = 10;
 
@@ -22,12 +22,12 @@ MainWindow::MainWindow(GameBoard* b, QWidget *parent) : board(b), QMainWindow(pa
             }
         }
 
-        std::vector<Desktop_Icon*> icons = board->returnIcons();
+        icons = board->returnIcons();
         for(auto icon : icons) {
-           size_t index = board->getHeight()*icon->getX()+icon->getY();
+           int index = board->getHeight()*icon->getX()+icon->getY();
            std::string nam = icon->getName();
-           QString* newNam = new QString::fromStdString(nam);
-           //buttons[index]->setText(newNam);
+           QString newNam = QString::fromStdString(nam);
+           buttons[index]->setText(newNam);
            connect(buttons[index], SIGNAL(released()), this, SLOT(ship()));
         }
 
@@ -44,18 +44,44 @@ void MainWindow::blank() {
     std::string noLongerSpecial = imSpecial.toStdString();
     //Sets label to ocean
     if(noLongerSpecial == "Ocean") {
-        //Means Nothing
+        lastClicked = "Ocean";
     } else {
-        //Do a thing (still need to use LastClicked)
+        Desktop_Icon* lastClickedIcon = findIcon(lastClicked);
+        //if() Need checkIfInRange function
+        size_t index = lastClickedIcon->getX()*board->getHeight()+lastClickedIcon->getY();
+        connect(buttons[index], SIGNAL(released()), this, SLOT(blank())); //Set previous part to Ocean
+        buttons[index]->setText("Ocean");                                 //And don't forget the name
+        clickedMe->setText(QString::fromStdString(lastClickedIcon->getName())); //Change Ocean button to ship.
+        //NEED TO FIND X AND Y OF THE NEW BUTTON
     }
-    //buttons[lastClicked]->setText("Ocean");
 
     //When ship moves, connections do too.
     //connect(buttons[lastClicked], SIGNAL(released()), this, SLOT(ship()));
 }
 
 void MainWindow::ship() {
-   //buttons[lastClicked]->setText("SHIP");
+   QPushButton* clickedMe = qobject_cast<QPushButton* >(sender());
+   std::string iconName = clickedMe->text().toStdString();
+   if (lastClicked == "Ocean") { //If last clicked is ocean, it is selecting a ship.
+       lastClicked = iconName;
+       return;
+   } else if (iconName == lastClicked) { //Click on it twice should deselect it.
+       lastClicked = "Ocean";
+       return;
+   }
+   Desktop_Icon* lastClickedIcon = findIcon(lastClicked);
+   Desktop_Icon* thisIcon = findIcon(iconName);
+   thisIcon->gotDamaged(lastClickedIcon->getWeapon());
+}
+
+//private helper function to find icon corresponding to text.
+Desktop_Icon* MainWindow::findIcon(std::string s) {
+    for(auto x: icons) {
+        if (x->getName() == s) {
+            return x;
+        }
+    }
+    return nullptr;
 }
 
 MainWindow::~MainWindow()

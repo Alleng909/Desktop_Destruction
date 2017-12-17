@@ -19,7 +19,7 @@ int main(int argc, char *argv[]) //NOTE NEED TO EQUIP A NEW WEAPON TO EACH SHIP
     QApplication a(argc, argv);
     MainWindow w(boardPointer);
     w.showMaximized();
-    w.setFixedSize(600,500);
+    w.setFixedSize(1000,800);
     w.show();
 
     return a.exec();

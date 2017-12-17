@@ -18,6 +18,7 @@ public:
     int getX() const;
     int getY() const;
     std::string getName() const;
+    Weapon* getWeapon() const;
 private:
     std::string name;
     int currentHealth;

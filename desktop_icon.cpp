@@ -35,3 +35,8 @@ int Desktop_Icon::getY() const {
 std::string Desktop_Icon::getName() const {
     return name;
 }
+
+
+Weapon* Desktop_Icon::getWeapon() const {
+    return virus;
+}
