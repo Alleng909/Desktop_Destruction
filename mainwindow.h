@@ -22,7 +22,7 @@ public:
     explicit MainWindow(QWidget *parent = 0) {}
     //I have no clue what I'm doing, but trying to make a constructor where I can input a board.
     MainWindow(GameBoard* b, QWidget *parent = 0);
-    ~MainWindow();
+    virtual ~MainWindow();
 private slots:
     void blank();
     void ship();

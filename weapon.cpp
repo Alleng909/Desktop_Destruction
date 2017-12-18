@@ -11,7 +11,7 @@ int Weapon::getHitNumber() const {
     return hitNumber;
 }
 
-//NOTE MIGHT WANT A MIN RANGE TOO, aka sniper
+//NOTE MIGHT WANT A MIN RANGE TOO, (for snipers)
 //Returns range of weapon
 int Weapon::getRange() const {
     return range;
@@ -24,6 +24,18 @@ int Weapon::getDamage() const {
 
 double Weapon::getAccuracy() const {
     return accuracy;
+}
+
+int Weapon::getX() const {
+    return holder->getX();
+}
+
+int Weapon::getY() const {
+    return holder->getY();
+}
+
+void Weapon::setHolder(Desktop_Icon* icon) {
+    holder = icon;
 }
 
 Weapon::~Weapon() {

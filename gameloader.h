@@ -8,6 +8,7 @@ class GameLoader
 public:
     GameLoader(std::string fileName, GameBoard* game) : file(fileName), board(game){}
     void load();
+    virtual ~GameLoader();
 private:
     std::string file;
     GameBoard* board;

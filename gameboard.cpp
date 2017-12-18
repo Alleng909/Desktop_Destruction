@@ -32,7 +32,7 @@ size_t GameBoard::getHeight() {
     return height;
 }
 
-GameBoard::~GameBoard() {
+GameBoard::~GameBoard() { //GameBoard class will be responsible for all the pointer clean up.
     for(auto weapon: weaponList) {
         delete weapon;
     }

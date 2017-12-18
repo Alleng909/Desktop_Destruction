@@ -38,7 +38,7 @@ MainWindow::MainWindow(GameBoard* b, QWidget *parent) : board(b), QMainWindow(pa
 
 }
 
-void MainWindow::blank() {
+void MainWindow::blank() { //Blank is connected to the empty tiles "Ocean".
     QPushButton* clickedMe = qobject_cast<QPushButton* >(sender());
     QString imSpecial = clickedMe->text(); //Annoying bugger needs a special function to be converted.
     std::string noLongerSpecial = imSpecial.toStdString();
@@ -59,7 +59,7 @@ void MainWindow::blank() {
     //connect(buttons[lastClicked], SIGNAL(released()), this, SLOT(ship()));
 }
 
-void MainWindow::ship() {
+void MainWindow::ship() { //Ship is called when an icon is pressed
    QPushButton* clickedMe = qobject_cast<QPushButton* >(sender());
    std::string iconName = clickedMe->text().toStdString();
    if (lastClicked == "Ocean") { //If last clicked is ocean, it is selecting a ship.
@@ -74,13 +74,32 @@ void MainWindow::ship() {
    thisIcon->gotDamaged(lastClickedIcon->getWeapon());
 }
 
+//Trying to make a template function to check if move is allowable
+template <typename FirstClicked, typename SecondClicked>
+bool isValidMove(FirstClicked* first, SecondClicked* second) {
+    int distance = abs(first->getX() - second->getX()) + abs(first->getY() - second->getY());
+    if (distance < first->getRange())
+        return true;
+    return false;
+}
+
 //private helper function to find icon corresponding to text.
 Desktop_Icon* MainWindow::findIcon(std::string s) {
+    /* Previous function
     for(auto x: icons) {
         if (x->getName() == s) {
             return x;
         }
     }
+    */
+    //Trying to incorporate lambda and for_each.
+    int index = 0;
+    std::for_each(icons.begin(), icons.end(), []() {
+        if (icons[n]->getName() == s) {
+            return *icons.begin();
+        }
+        ++index;
+    });
     return nullptr;
 }
 
