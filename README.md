@@ -1,7 +1,9 @@
 # Desktop_Destruction
-Actual one (Hopefully)
+(Actual one)
+I tried implementing a template function to check range,
+and a for_each lambda function to locate a certain pointer in an array.
 
-To run the program, make a txt file named Load1 and copy in the following text:
+To run the program, make a txt file named Load1 in the build-Desktop_Destruction folder and copy in the following text:
 10 10 4
 Weapon Name	Hits	Range	Max	Min	Accuracy
 FirstWeapon	1	2	5	3	.8 
